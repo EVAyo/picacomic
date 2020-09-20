@@ -31,7 +31,7 @@ func getSign(header map[string]string, url string, method string) map[string]str
     var apiKey = "C69BAF41DA5ABD1FFEDC6D2FEA56B"
     var raw = strings.Replace(url, "https://picaapi.picacomic.com/",    "", 1) + header["time"] + nonce + method + apiKey
     raw = strings.ToLower(raw)
-    h := hmac.New(sha256.New, []byte("~d}$Q7$eIni=V)9\\RK/P.RM4;9[7|@   CA}b~OW!3?EV`:<>M7pddUBL5n|0/*Cn"))
+    h := hmac.New(sha256.New, []byte("~d}$Q7$eIni=V)9\\RK/P.RM4;9[7|@/CA}b~OW!3?EV`:<>M7pddUBL5n|0/*Cn"))
     h.Write([]byte(raw))
     header["signature"] = hex.EncodeToString(h.Sum(nil))
     return header
@@ -115,15 +115,16 @@ response:
 
 ```
 
-## block 分区
+## Comics
 
 ``` python
-url: "https://picaapi.picacomic.com/comics?page={page:1}&c={blockName}&s={type}"
+url: "https://picaapi.picacomic.com/comics"
 method: GET
 params:
   page: 分页，从1开始
-  blockName: 分区名字，categories里面的title，如"嗶咔漢化"
-  type: 排序依据
+  c: 分区名字，categories里面的title，如"嗶咔漢化"
+  t: 标签的名字，由info返回数据里面的"tags"获得
+  s: 排序依据
       ua: 默认
       dd: 新到旧
       da: 旧到新
@@ -164,17 +165,6 @@ response
     }
   }
 }
-```
-
-## tags 按标签查找
-
-``` python
-url: "https://picaapi.picacomic.com/comics?page={page}&t={tagsName}"
-method: GET
-params:
-  tagName: 标签的名字，由info返回数据里面的"tags"获得
-response：
-  和block的返回数据结构一样
 ```
 
 ## info 漫画详细信息
