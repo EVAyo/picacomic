@@ -3,6 +3,7 @@
 - 批评某位开发者，居然用这个来牟利，不怕被请去喝茶，而且态度还极端恶劣。
 - 隔壁被pica查水表了，我整理一下api
 - pica目录下有[python](./pica)实现，但是需要修改headers和secretKey，才能正常运行
+- 这是[Golang](https://github.com/AnkiKong/gopica)实现，可以运行，有bug请先参考这个修改
 
 ## 验证
 
